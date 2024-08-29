@@ -11,13 +11,13 @@ public class Calculator {
         this.currentValue = initialValue;
     }
 
-    public Number calculate(OperationType operationType, Number num1, Number num2) {
-        Operation operation = OperationFactory.getOperation(operationType);
-        return operation.apply(num1, num2);
+    public Number calculate(Operation operation, Number num1, Number num2) {
+        OperationType o = OperationFactory.getOperation(operation);
+        return o.apply(num1, num2);
     }
 
-    public Calculator perform(OperationType operationType, Number value) {
-        this.currentValue = OperationFactory.getOperation(operationType).apply(this.currentValue, value);
+    public Calculator perform(Operation operation, Number value) {
+        this.currentValue = OperationFactory.getOperation(operation).apply(this.currentValue, value);
         return this;
     }
 

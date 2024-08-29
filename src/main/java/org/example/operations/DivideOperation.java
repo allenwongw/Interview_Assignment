@@ -1,8 +1,8 @@
 package org.example.operations;
 
-import org.example.core.Operation;
+import org.example.core.OperationType;
 
-public class DivideOperation implements Operation {
+public class DivideOperation implements OperationType{
     @Override
     public Number apply(Number num1, Number num2) {
         if (num2.doubleValue() == 0) {
