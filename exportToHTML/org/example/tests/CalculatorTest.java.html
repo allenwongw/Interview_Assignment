@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>CalculatorTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CalculatorTest.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">tests</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">calculator</span><span class="s2">.</span><span class="s1">Calculator</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">calculator</span><span class="s2">.</span><span class="s1">CalculatorBuilder</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">OperationFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">OperationType</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">exceptions</span><span class="s2">.</span><span class="s1">UnsupportedOperationException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">junit</span><span class="s2">.</span><span class="s1">jupiter</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">Test</span><span class="s2">;</span>
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">junit</span><span class="s2">.</span><span class="s1">jupiter</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">Assertions</span><span class="s2">.*;</span>
+
+<span class="s0">public class </span><span class="s1">CalculatorTest </span><span class="s2">{</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">testBasicOperations</span><span class="s2">() {</span>
+        <span class="s1">Calculator calculator </span><span class="s2">= </span><span class="s0">new </span><span class="s1">CalculatorBuilder</span><span class="s2">().</span><span class="s1">setInitialValue</span><span class="s2">(</span><span class="s3">10</span><span class="s2">).</span><span class="s1">build</span><span class="s2">();</span>
+
+        <span class="s1">assertEquals</span><span class="s2">(</span><span class="s3">13.0</span><span class="s2">, </span><span class="s1">calculator</span><span class="s2">.</span><span class="s1">calculate</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">ADD</span><span class="s2">, </span><span class="s3">10</span><span class="s2">, </span><span class="s3">3</span><span class="s2">).</span><span class="s1">doubleValue</span><span class="s2">());</span>
+        <span class="s1">assertEquals</span><span class="s2">(</span><span class="s3">5.0</span><span class="s2">, </span><span class="s1">calculator</span><span class="s2">.</span><span class="s1">calculate</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">SUBTRACT</span><span class="s2">, </span><span class="s3">10</span><span class="s2">, </span><span class="s3">5</span><span class="s2">).</span><span class="s1">doubleValue</span><span class="s2">());</span>
+        <span class="s1">assertEquals</span><span class="s2">(</span><span class="s3">50.0</span><span class="s2">, </span><span class="s1">calculator</span><span class="s2">.</span><span class="s1">calculate</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">MULTIPLY</span><span class="s2">, </span><span class="s3">10</span><span class="s2">, </span><span class="s3">5</span><span class="s2">).</span><span class="s1">doubleValue</span><span class="s2">());</span>
+        <span class="s1">assertEquals</span><span class="s2">(</span><span class="s3">2.5</span><span class="s2">, </span><span class="s1">calculator</span><span class="s2">.</span><span class="s1">calculate</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">DIVIDE</span><span class="s2">, </span><span class="s3">10</span><span class="s2">, </span><span class="s3">4</span><span class="s2">).</span><span class="s1">doubleValue</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">testChainingOperations</span><span class="s2">() {</span>
+        <span class="s1">Calculator calculator </span><span class="s2">= </span><span class="s0">new </span><span class="s1">CalculatorBuilder</span><span class="s2">().</span><span class="s1">setInitialValue</span><span class="s2">(</span><span class="s3">10</span><span class="s2">).</span><span class="s1">build</span><span class="s2">();</span>
+
+        <span class="s1">Number result </span><span class="s2">= </span><span class="s1">calculator</span>
+                <span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">ADD</span><span class="s2">, </span><span class="s3">5</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">SUBTRACT</span><span class="s2">, </span><span class="s3">3</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">MULTIPLY</span><span class="s2">, </span><span class="s3">2</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">DIVIDE</span><span class="s2">, </span><span class="s3">4</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">getResult</span><span class="s2">();</span>
+
+        <span class="s1">assertEquals</span><span class="s2">(</span><span class="s3">6.0</span><span class="s2">, </span><span class="s1">result</span><span class="s2">.</span><span class="s1">doubleValue</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">testDivideByZero</span><span class="s2">() {</span>
+        <span class="s1">Calculator calculator </span><span class="s2">= </span><span class="s0">new </span><span class="s1">CalculatorBuilder</span><span class="s2">().</span><span class="s1">setInitialValue</span><span class="s2">(</span><span class="s3">10</span><span class="s2">).</span><span class="s1">build</span><span class="s2">();</span>
+
+        <span class="s1">assertThrows</span><span class="s2">(</span><span class="s1">ArithmeticException</span><span class="s2">.</span><span class="s0">class</span><span class="s2">, () </span><span class="s1">-&gt; </span><span class="s2">{</span>
+            <span class="s1">calculator</span><span class="s2">.</span><span class="s1">calculate</span><span class="s2">(</span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">DIVIDE</span><span class="s2">, </span><span class="s3">10</span><span class="s2">, </span><span class="s3">0</span><span class="s2">);</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">testUnsupportedOperation</span><span class="s2">() {</span>
+        <span class="s1">assertThrows</span><span class="s2">(</span><span class="s1">UnsupportedOperationException</span><span class="s2">.</span><span class="s0">class</span><span class="s2">, () </span><span class="s1">-&gt; </span><span class="s2">{</span>
+            <span class="s1">OperationType operationType </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">operationType </span><span class="s2">= </span><span class="s1">OperationType</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s4">&quot;MODULO&quot;</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IllegalArgumentException e</span><span class="s2">) {</span>
+                <span class="s0">throw new </span><span class="s1">UnsupportedOperationException</span><span class="s2">(</span><span class="s4">&quot;Operation not supported: MODULO&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s1">OperationFactory</span><span class="s2">.</span><span class="s1">getOperation</span><span class="s2">(</span><span class="s1">operationType</span><span class="s2">);</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
